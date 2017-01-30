@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<head>
+	<style>
+		body {
+			padding:10;
+			margin:20;
+			height: 100%;
+		}
+		html{
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			width: 100%;
+		}
+		#map {
+			height: 33%;
+			width: 50%;
+		}
+		#map2 {
+			height: 33%;
+			width: 50%;
+		}
+		#map3 {
+			height: 33%;
+			width: 50%;
+		}
+
+		
+
+	</style>
+
+
+	<title> First Web Map </title>
+	<link rel="stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css">
+	<script src ="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
+</head>
+
+
+
+<body>
+	<div id="map"></div>
+	<div id="map2"></div>
+	<div id="map3"></div>
+
+	<script>
+
+	var layer = new L.tileLayer('http://tile.stamen.com/toner/{z}/{x}/{y}.png', "toner", {
+	attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://www.openstreetmap.org/copyright">ODbL</a>.'
+});
+
+	var map = L.map('map', {
+	  scrollWheelZoom: true,
+	  center: [40.009273, 116.319287],
+	  zoom:13
+	});
+
+	map.addLayer(layer);
+
+
+	var layer2 = L.tileLayer('http://tile.stamen.com/watercolor/{z}/{x}/{y}.png', "watercolor", {
+	attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://www.openstreetmap.org/copyright">ODbL</a>.'
+	});
+
+	var map2 = L.map('map2', {
+	  scrollWheelZoom: true,
+	  center: [41.825854, -71.407737],
+	  zoom:16
+	});
+
+	map2.addLayer(layer2);
+
+
+	var layer3 = new L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png', {
+	  attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
+	});
+
+	var map3 = L.map('map3', {
+	  scrollWheelZoom: true,
+	  center: [40.729510, -73.993843],
+	  zoom:16
+	});
+
+	map3.addLayer(layer3);
+
+
+	</script>
+
+
+</body>
+</html>
+
+
+var layer = new L.tileLayer('http://tile.stamen.com/terrain/{z}/{x}/{y}.png', "terrain", {
+	attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://www.openstreetmap.org/copyright">ODbL</a>.'
+});
+
