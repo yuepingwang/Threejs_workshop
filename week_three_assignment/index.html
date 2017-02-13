@@ -1,0 +1,214 @@
+<!-- Leaflet reference: http://leafletjs.com/reference.html -->
+<!-- Omnivore reference: https://github.com/mapbox/leaflet-omnivore -->
+
+<!DOCTYPE html>
+<head>
+    <style>
+    body {
+        padding: 0;
+        margin: 0;
+        height: 100%;
+    }
+    
+    html,
+    #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+    }
+
+    </style>
+    <title> Yueping's Transportation Data </title>
+    <script src='https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.js'></script>
+    <link href='https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.css' rel='stylesheet'>
+    <script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.3.1/leaflet-omnivore.min.js'></script>
+    <script src='https://momentjs.com/downloads/moment.js'></script>
+</head>
+
+<body>
+    <div id="map"></div>
+    <script>
+    // BaseMap
+
+    //var layer = L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}.png');
+    //var layer1 = L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png');
+    var layer1 = new L.tileLayer('http://tile.stamen.com/toner-lite/{z}/{x}/{y}.png', "toner-lite", {
+    attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://www.openstreetmap.org/copyright">ODbL</a>.'
+});
+    var map = L.map('map').setView([40.7246342, -73.9427715], 13);
+
+    map.addLayer(layer1);
+    //map.addLayer(layer);
+
+    var walkingLayer = L.geoJson(null, {
+    filter: function(feature) {
+        console.log(feature.properties.activities[0].activity);
+        // my custom filter function
+        return feature.properties.activities[0].activity=="walking"; 
+    },
+    style:function(feature){
+            return{
+                color:"#fab79a",
+                weight:11,
+                opacity:.8
+            }
+        }
+});
+        var walkingLayer1 = L.geoJson(null, {
+    filter: function(feature) {
+        console.log(feature.properties.activities[0].activity);
+        // my custom filter function
+        return feature.properties.activities[0].activity=="walking"; 
+    },
+    style:function(feature){
+            return{
+                color:"#ff6666",
+                weight:7,
+                opacity:.7
+            }
+        }
+});
+            var walkingLayer2 = L.geoJson(null, {
+    filter: function(feature) {
+        console.log(feature.properties.activities[0].activity);
+        // my custom filter function
+        return feature.properties.activities[0].activity=="walking"; 
+    },
+    style:function(feature){
+            return{
+                color:"#996699",
+                weight:4,
+                opacity:.6
+            }
+        }
+});
+
+
+
+    var runningLayer = L.geoJson(null, {
+    filter: function(feature) {
+        console.log(feature.properties.activities[0].activity);
+        // my custom filter function
+        return feature.properties.activities[0].activity=="running"; 
+    },
+    style:function(feature){
+            return{
+                color:"#00ffcc",
+                weight:12,
+                opacity:.7
+            }
+        }
+});
+    var runningLayer1 = L.geoJson(null, {
+    filter: function(feature) {
+        console.log(feature.properties.activities[0].activity);
+        // my custom filter function
+        return feature.properties.activities[0].activity=="running"; 
+    },
+    style:function(feature){
+            return{
+                color:"#00cc99",
+                weight:8,
+                opacity:.8
+            }
+        }
+});
+    var runningLayer2 = L.geoJson(null, {
+    filter: function(feature) {
+        console.log(feature.properties.activities[0].activity);
+        // my custom filter function
+        return feature.properties.activities[0].activity=="running"; 
+    },
+    style:function(feature){
+            return{
+                color:"#0066ff",
+                weight:4,
+                opacity:.7
+            }
+        }
+});
+
+    var transportLayer = L.geoJson(null, {
+    filter: function(feature) {
+        console.log(feature.properties.activities[0].activity);
+        // my custom filter function
+        return feature.properties.activities[0].activity=="transport"; 
+    },
+    style:function(feature){
+            return{
+                color:"#d5b4d1",
+                weight:10,
+                opacity:.9
+            }
+        }
+});
+    var transportLayer1 = L.geoJson(null, {
+    filter: function(feature) {
+        console.log(feature.properties.activities[0].activity);
+        // my custom filter function
+        return feature.properties.activities[0].activity=="transport"; 
+    },
+    style:function(feature){
+            return{
+                color:"#0066ff",
+                weight:7,
+                opacity:.6
+            }
+        }
+});
+    var transportLayer2 = L.geoJson(null, {
+    filter: function(feature) {
+        console.log(feature.properties.activities[0].activity);
+        // my custom filter function
+        return feature.properties.activities[0].activity=="transport"; 
+    },
+    style:function(feature){
+            return{
+                color:"#8cd7f4",
+                weight:3,
+                opacity:.7
+            }
+        }
+});
+    var placesLayer=L.geoJson(null,{
+        pointToLayer:function(feature,latlng){
+            return new L.CircleMarker(latlng,{
+                radius:8,
+                color:"#779ab8",
+                fillColor:"#ccffff",
+                fillOpacity:1
+            })
+        },
+        onEachFeature(feature,layer){
+            layer.bindPopup(feature.properties.place.type);
+            console.log(feature.properties.endTime);
+            console.log(feature.properties.startTime);
+            var end = moment(feature.properties.endTime);
+            var start= moment(feature.properties.startTime);
+            var time=end-start;
+            console.log(time/60000 + " minutes");
+        }
+        // filter:function(feature,)
+    
+    });
+
+    var transport =omnivore.geojson("data1/activities.geojson", null,transportLayer).addTo(map);
+    var transport1 =omnivore.geojson("data1/activities.geojson", null,transportLayer1).addTo(map);
+    var transport2 =omnivore.geojson("data1/activities.geojson", null,transportLayer2).addTo(map);
+
+    var walkLayer = omnivore.geojson("data1/activities.geojson", null,walkingLayer).addTo(map);
+    var walkLayer1 = omnivore.geojson("data1/activities.geojson", null,walkingLayer1).addTo(map);
+    var walkLayer2 = omnivore.geojson("data1/activities.geojson", null,walkingLayer2).addTo(map);
+
+    var runLayer = omnivore.geojson("data1/activities.geojson", null,runningLayer).addTo(map);
+    var runLayer1 = omnivore.geojson("data1/activities.geojson", null,runningLayer1).addTo(map);
+    var runLayer2 = omnivore.geojson("data1/activities.geojson", null,runningLayer2).addTo(map);
+    
+    var dataLayer = omnivore.geojson("data1/places.geojson", null,placesLayer).addTo(map);
+    var dataLayer = omnivore.geojson("data1/places.geojson", null,placesLayer).addTo(map);
+
+    </script>
+</body>
+
+</html>
