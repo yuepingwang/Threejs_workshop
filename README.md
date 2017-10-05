@@ -23,24 +23,41 @@ A data structure that represents the objects in a scene, together with attribute
 Three.js follows this kind of hierarchical structure, and the 3D object being rendered and the properties of it, such as shape, material and color, rely on this kind of "Parent-child" relationship.
 
 <h1>Scene, Renderer, Camera</h1>
+
+Scene:
+
 The three.js library is made up of a large number of classes. Three of the most basic are <i>THREE.Scene</i>, <i>THREE.Camera</i>, and <i>THREE.WebGLRenderer</i>. A three.js program will need at least one object of each type. Those objects are often stored in global variables, declared at the top of the program:
 
-    <code> var scene, renderer, camera; </code>
+    var scene, renderer, camera;
 
 A Scene object is a holder for all the objects that make up a 3D world, including lights, graphical objects, and possibly cameras. It acts as a root node for the scene graph. A Camera is a special kind of object that represents a viewpoint from which an image of a 3D world can be made. It represents a combination of a viewing transformation and a projection. A renderer is an object that can create an image from a scene graph.
 
 A scene can be created as an object of type THREE.Scene using a constructor with no parameters:
 
-    <code> scene = new THREE.Scene(); </code> 
+    scene = new THREE.Scene();
+
+Camera:
 
 There are two kinds of camera, one using orthographic projection and one using perspective projection. They are represented by classes THREE.OrthographicCamera and THREE.PerspectiveCamera, which are subclasses of THREE.Camera. The constructors must specify the projection with corresponding parameters:
 
 Orthographic Camera: 
-    <code> camera = new THREE.OrthographicCamera( left, right, top, bottom, near, far ); </code>
+    
+    camera = new THREE.OrthographicCamera( left, right, top, bottom, near, far );
    
 Perspective Camera: 
-    <code> camera = new THREE.PerspectiveCamera( fieldOfViewAngle, aspect, near, far ); </code>
+    
+    camera = new THREE.PerspectiveCamera( fieldOfViewAngle, aspect, near, far );
+    
+The parameters for the orthographic camera specify the x, y, and z limits of the view volume, in eye coordinates—that is, in a coordinate system in which the camera is at (0,0,0) looking in the direction of the negative z-axis, with the y-axis pointing up in the view. The near and far parameters give the z-limits in terms of distance from the camera. 
 
+<img src="http://learnwebgl.brown37.net/_images/side_view_frustum.png" width="444" height="481" alt="">
+
+Perspective cameras are more common. The first parameter determines the vertical extent of the view volume, given as an angle measured in degrees. The aspect is the ratio between the horizontal and vertical extents; it should usually be set to the width of the canvas divided by its height. And near and far give the z-limits on the view volume as distances from the camera. For a perspective projection, both must be positive, with near less than far. Typical code for creating a perspective camera would be:
+
+    camera = new THREE.PerspectiveCamera( 45, canvas.width/canvas.height, 1, 100 );
+
+In this case, "canvas" holds a reference to the <canvas> element where the image will be rendered. The near and far values mean that only things between 1 and 100 units in front of the camera are included in the image. While the camera can be added to a scene, it does not have to be part of the scene graph to be used. In other words, it doesn't have to be the "children" of a particular object. However, in either case, you must define its position and orientation in 3D space.
+    
 <div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">const</span> <span style="color: #a6e22e">WIDTH</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">400</span><span style="color: #f8f8f2">;</span>
 <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">HEIGHT</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">300</span><span style="color: #f8f8f2">;</span>
 
