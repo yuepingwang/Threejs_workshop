@@ -64,28 +64,12 @@ Renderer:
 
 Three.js actually has several renderer classes, which can render to different targets. The core library includes a WebGL renderer and a canvas renderer. The canvas renderer translates 3D graphics into the 2D canvas API that was covered in Section 2.6. It can be used as a fallback when WebGL is not available, but it doesn't implement many of the more interesting 3D features, and it is generally much slower than the WebGL renderer.
 
+A renderer that renders using WebGL is an instance of the class THREE.WebGLRenderer:
 
-<div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">const</span> <span style="color: #a6e22e">WIDTH</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">400</span><span style="color: #f8f8f2">;</span>
-<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">HEIGHT</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">300</span><span style="color: #f8f8f2">;</span>
+    renderer = new THREE.WebGLRenderer( { antialias: true } );
+    
+The main thing that you want to do with a renderer is render an image. For that, you also need a scene and a camera. To render an image of a given scene from the point of view of a given camera, call
 
-<span style="color: #75715e">// Set some camera attributes.</span>
-<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">VIEW_ANGLE</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">45</span><span style="color: #f8f8f2">;</span>
-<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">ASPECT</span> <span style="color: #f92672">=</span> <span style="color: #a6e22e">WIDTH</span> <span style="color: #f92672">/</span> <span style="color: #a6e22e">HEIGHT</span><span style="color: #f8f8f2">;</span>
-<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">NEAR</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">0.1</span><span style="color: #f8f8f2">;</span>
-<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">FAR</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">10000</span><span style="color: #f8f8f2">;</span>
+    renderer.render( scene, camera );
 
-<span style="color: #75715e">// Get the DOM element to attach to</span>
-<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">container</span> <span style="color: #f92672">=</span>
-    <span style="color: #f8f8f2">document.</span><span style="color: #a6e22e">querySelector</span><span style="color: #f8f8f2">(</span><span style="color: #e6db74">&#39;#container&#39;</span><span style="color: #f8f8f2">);</span>
-
-<span style="color: #75715e">// Create a WebGL renderer, camera</span>
-<span style="color: #75715e">// and a scene</span>
-<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">renderer</span> <span style="color: #f92672">=</span> <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">THREE</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">WebGLRenderer</span><span style="color: #f8f8f2">();</span>
-<span style="color: #66d9ef">const</span> <span style="color: #a6e22e">camera</span> <span style="color: #f92672">=</span>
-    <span style="color: #66d9ef">new</span> <span style="color: #a6e22e">THREE</span><span style="color: #f8f8f2">.</span><span style="color: #a6e22e">PerspectiveCamera</span><span style="color: #f8f8f2">(</span>
-        <span style="color: #a6e22e">VIEW_ANGLE</span><span style="color: #f8f8f2">,</span>
-        <span style="color: #a6e22e">ASPECT</span><span style="color: #f8f8f2">,</span>
-        <span style="color: #a6e22e">NEAR</span><span style="color: #f8f8f2">,</span>
-        <span style="color: #a6e22e">FAR</span>
-    <span style="color: #f8f8f2">);</span>
-</pre></div>
+                     
