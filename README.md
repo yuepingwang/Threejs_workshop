@@ -40,6 +40,8 @@ Camera:
 
 There are two kinds of camera, one using orthographic projection and one using perspective projection. They are represented by classes THREE.OrthographicCamera and THREE.PerspectiveCamera, which are subclasses of THREE.Camera. The constructors must specify the projection with corresponding parameters:
 
+<img src="https://i.stack.imgur.com/zyGF1.gif" alt="">
+
 Orthographic Camera: 
     
     camera = new THREE.OrthographicCamera( left, right, top, bottom, near, far );
