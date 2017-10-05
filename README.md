@@ -59,7 +59,12 @@ Perspective cameras are more common. The first parameter determines the vertical
     camera = new THREE.PerspectiveCamera( 45, canvas.width/canvas.height, 1, 100 );
 
 In this case, "canvas" holds a reference to the <canvas> element where the image will be rendered. The near and far values mean that only things between 1 and 100 units in front of the camera are included in the image. While the camera can be added to a scene, it does not have to be part of the scene graph to be used. In other words, it doesn't have to be the "children" of a particular object. However, in either case, you must define its position and orientation in 3D space.
-    
+
+Renderer:
+
+Three.js actually has several renderer classes, which can render to different targets. The core library includes a WebGL renderer and a canvas renderer. The canvas renderer translates 3D graphics into the 2D canvas API that was covered in Section 2.6. It can be used as a fallback when WebGL is not available, but it doesn't implement many of the more interesting 3D features, and it is generally much slower than the WebGL renderer.
+
+
 <div style="background: #272822; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #66d9ef">const</span> <span style="color: #a6e22e">WIDTH</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">400</span><span style="color: #f8f8f2">;</span>
 <span style="color: #66d9ef">const</span> <span style="color: #a6e22e">HEIGHT</span> <span style="color: #f92672">=</span> <span style="color: #ae81ff">300</span><span style="color: #f8f8f2">;</span>
 
