@@ -50,7 +50,7 @@ Perspective Camera:
     
 The parameters for the orthographic camera specify the x, y, and z limits of the view volume, in eye coordinates—that is, in a coordinate system in which the camera is at (0,0,0) looking in the direction of the negative z-axis, with the y-axis pointing up in the view. The near and far parameters give the z-limits in terms of distance from the camera. 
 
-<img src="http://learnwebgl.brown37.net/_images/side_view_frustum.png" width="444" height="481" alt="">
+<img src="http://learnwebgl.brown37.net/_images/side_view_frustum.png" alt="">
 
 Perspective cameras are more common. The first parameter determines the vertical extent of the view volume, given as an angle measured in degrees. The aspect is the ratio between the horizontal and vertical extents; it should usually be set to the width of the canvas divided by its height. And near and far give the z-limits on the view volume as distances from the camera. For a perspective projection, both must be positive, with near less than far. Typical code for creating a perspective camera would be:
 
