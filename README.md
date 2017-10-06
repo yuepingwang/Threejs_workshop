@@ -3,14 +3,11 @@ Three.js is an Javascript library for 3D graphics. It's an open sourced project 
 Three.js uses the common concepts of 3D modelling, such as geometric objects, transformations, lights, materials, textures, and cameras. But it also has additional features that build on the power and flexibility of WegGL.
 
 <h2>Examples + Inspirations</h2>
-    Mr.Doob's website
-    http://mrdoob.com/#/138/kinect
+Mr.Doob's website http://mrdoob.com/#/138/kinect
     
-    Google Chrome Experiments 
-    https://experiments.withgoogle.com/chrome
+Google Chrome Experiments https://experiments.withgoogle.com/chrome
     
-    Three.js website 
-    https://threejs.org/
+Three.js website https://threejs.org/
     
 
 <h1>Libraries and Downloads</h1>
