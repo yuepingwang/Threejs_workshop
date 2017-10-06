@@ -18,7 +18,7 @@ The core features of three.js are defined in a single large JavaScript file name
 
 To use three.js on a web page, you need to include one of the two scripts in a <script> element on the page. For example, assuming that three.min.js is in the same folder as the web page, then the script element would be:
 
-    <code> <script src="three.min.js"></script> </code>
+    <script src="three.min.js"></script>
 
 <h1> Object Oriented Programming and Scene Graphs </h1>
 In order to more intuitive program with Three.js, it is helpful to take a quick look at the data structure of the objects being rendered, and how it affects how we code.
