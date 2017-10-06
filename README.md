@@ -2,6 +2,15 @@
 Three.js is an Javascript library for 3D graphics. It's an open sourced project initially created by Ricardo Cabello (or "mr.doob"), and many programmers have made contributions to it.
 Three.js uses the common concepts of 3D modelling, such as geometric objects, transformations, lights, materials, textures, and cameras. But it also has additional features that build on the power and flexibility of WegGL.
 
+<h2>Examples + Inspirations</h2>
+    Mr.Doob's website
+    http://mrdoob.com/#/138/kinect
+    Google Chrome Experiments 
+    https://experiments.withgoogle.com/chrome
+    Three.js website 
+    https://threejs.org/
+    
+
 <h1>Libraries and Downloads</h1>
 You can download the full three.js libraries and find their documentations at the main web site: <link href="http://threejs.org/">http://threejs.org 
 
@@ -16,6 +25,7 @@ To use three.js on a web page, you need to include one of the two scripts in a <
 In order to more intuitive program with Three.js, it is helpful to take a quick look at the data structure of the objects being rendered, and how it affects how we code.
 
 Scene Graph: 
+
 A data structure that represents the objects in a scene, together with attributes of the objects and the modeling transformations that are applied to the objects. An image of the scene is created by traversing the scene graph data structure. A scene graph might exist only conceptually, or it might be an actual data structure in a program.
 
 <img src="http://math.hws.edu/graphicsbook/c2/scene-graph.png" width="444" height="481" alt="">
